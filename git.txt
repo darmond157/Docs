@@ -1,0 +1,24 @@
+git add .
+git commit -a -m <message>
+git diff
+git rm --cached <file>
+git log -2 --oneline
+git status
+git checkout -- .
+git reset HEAD .
+git reset --hard <commit_id>
+git branch <branch_name> (create branch)
+git branch -a (branch list)
+git checkout <branch_name> (switch to branch)
+git branch -d <branch_name> (delete)
+git checkout -b <branch_name> (create and switch to branch)
+git merge <branch_name> (*run this command on master*)
+git log --graph
+when conflicted => git merge --abort
+when conflicted => solve locally on code => add => commit => merged
+git stash (save "message")
+git stash list
+git stash drop <stash_id>
+git stash show (-p) <stash_id>
+git stash apply <stash_id> (return to first place)
+git stash pop <stash_id> (return to first place and delete from stash list)
