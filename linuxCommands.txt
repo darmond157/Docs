@@ -1,0 +1,54 @@
+type <command>
+which <command>
+whatis <command>
+man <command>
+info <command>
+apropos <s.th>
+stat <filename>
+ln -s original_file soft_link //pointer from soft_link_file to original_file
+ln original_file soft_link //pointer from hard_link_file to original_file
+ls -i soft_or_hard_link_file original_file //checks inode
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+sudo -i //access root
+su (optional:- <user>) (default:root)
+cat /etc/passwd => username:x:userId:groupId:a comment:home path:default shell //x means the user's password is encrypted and stored in the file /etc/shadow.
+(as root) useradd -m -u <uid> -c <comment> -s <shell_path> <username>
+tail -n <number> <filename> //gives last <number> lines of file
+passwd <user> //change password
+usermod -u <userid> -s <shell> username
+userdel -r <username>
+cat /etc/group => groupName:x:groupId:usernameOfGroupMembers //x means the group password is encrypted and stored in the file /etc/gshadow.
+groupadd (optional: --gid 888) <groupName> //create new group
+groupdel <groupName>
+usermod -aG <groupName> <userName>
+chown <username>:<groupName> fileName
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-rwxrwxrwx => read/write/execute for owner/group/others || first character is file type =>
+1) - for regular files
+2) d for directories
+3) l for soft links
+4) b for block devices
+5) c for character devices
+chmod ====>
+chmod o+w <fileName> => write access for others
+chmod a+x <fileName> => execute access for all
+chmod a-x <fileName> => remove execute access for all
+chmod ug=rwx <fileName> => This will give the user owner and group owner full permissions.
+chmod o-rw <fileName> => This will remove read and write permissions from others.
+chmod a= <fileName> => This will give zero (no) permissions to everyone.
+chmod go= <fileName> => This will give zero permissions to the group owner and others.
+chmod u+rx <fileName> => This will add read and execute permissions to the user owner.
+access numbers ====> 7: read + write + execute || 6: read + write || 4: read || 2: write || 1: execute || 0: no permission
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** piping in linux gives us access to pass output of a command to input of another command. **
+lscpu | head -n 4 | tail -n 1 => gives us the fifth line of that fileName by passing 5 first lines of file then returning first line from bottom.
+** we can use greater-than sign ( > ) to redirect output from terminal to a file and ( >> ) to append another text; not rewriting that in a file. ** ===>
+echo "hello" > hi.txt
+echo date >> date.txt
+** using > means 1> which is output || using 2> will put errors is a specific file ** ===>
+cat exist.txt notExist.txt 2> err.txt //will put only " No such file or directory " in err.txt
+if you want to redirect both the standard output and the error to the same file ===> cat exist.txt notExist.txt > all.txt 2>&1
+cat 1.txt 2.txt 3.txt 4.txt 2> /dev/null || we can think of /dev/null to be garbage collector.
+read variable < example.txt // will redirect standard input to come from a file
+read variable // will put users input in variable ehich can be used with "echo $variable"
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
