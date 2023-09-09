@@ -56,3 +56,10 @@ diff <file1> <file2> //returns differences between two files.
 du -b <fileName> //disk usage of that file. each word is one byte. so it returns how many bytes or words it has.
 du -h <fileName> //in human-readable format
 wc option <fileName> //fileName can be -l -w -c  => line/word/character
+file <something> //returns filetype of that => dir, ascii file, ...
+sort -r(reverse) <fileName>
+uniq <fileName> //shows lines without repeat.
+grep -i(case-insensitive) <something> <fileName> //searches for something in a file.
+sed -i(optional) 's/<source>/<target>'
+cat <fileName> | tr [:lower:] [:upper:] //translates lowercases to uppercases but does not change source file. we can use (> <fileName>) at end to save translated data.
+cat <fileName> | tr -d ' ' //deletes all spaces
