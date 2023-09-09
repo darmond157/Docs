@@ -51,7 +51,7 @@ if you want to redirect both the standard output and the error to the same file 
 cat 1.txt 2.txt 3.txt 4.txt 2> /dev/null || we can think of /dev/null to be garbage collector.
 read variable < example.txt // will redirect standard input to come from a file
 read variable // will put users input in variable ehich can be used with "echo $variable"
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 diff <file1> <file2> //returns differences between two files.
 du -b <fileName> //disk usage of that file. each word is one byte. so it returns how many bytes or words it has.
 du -h <fileName> //in human-readable format
@@ -63,3 +63,51 @@ grep -i(case-insensitive) <something> <fileName> //searches for something in a f
 sed -i(optional) 's/<source>/<target>'
 cat <fileName> | tr [:lower:] [:upper:] //translates lowercases to uppercases but does not change source file. we can use (> <fileName>) at end to save translated data.
 cat <fileName> | tr -d ' ' //deletes all spaces
+cut -d ' ' -f1 <fileName> //returns first part of slicing with white space. it can be -f2 -f3 -f4 -f2,3 -f1,3 ...
+awk '{print $1}' <fileName> //returns first word on each line in a file.
+awk '{print $1,$2}'
+awk '/red/{print}' <fileName> //searches for 'red' like grep command.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Wildcard Characaters ===>
+* Matches any character(s).
+? Matches any single character.
+[characters] Matches the characters that are members of the set characters.
+[!characters] is negation of [characters]. For example, [!abc] will match any character that is not a, b, or c.
+[[:class:]] Matches any character that is a member of the character class.
+[:alnum:] Represents all the alphanumeric letters, that is, any letter or number.
+[:alpha:] Represents all alphabetic letters, that is, any letter.
+[:digit:] Represents all digits, that is, any number.
+[:lower:] Represents any lower case letter.
+[:upper:] Represents any upper case letter.
+e.g =>
+ls -l *.txt
+ls -l f*
+ls -l ???.txt
+ls -l [af]*
+ls -l [!f]*.txt
+ls -l *[[:upper:]]
+ls -l [[:digit:]]*
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Regex ===>
+* Matches zero or more of the preceding characters or expressions.
++ Matches one or more of the preceding characters or expressions.
+. Matches any single character. Same as the ? wildcard.
+^ Matches the following expression at the beginning of the line. For example, ^dog will match all lines that begin with the word dog.
+$ Matches the preceding expression at the end of the line. For example, bird$ will match all lines that end with the word bird.
+\ Used as an escape character to match a special character following the backslash. Forexample, \* matches a star (asterisk).
+[characters] Matches the characters that are members of the set characters. For example, [abc] will match the characters a,b, or c.
+[^character] Matches any character that is not a member of the set characters. It is basically the negation of [characters]. For example, [!abc] will match any character that is not a,b, or c.
+{x,y} Matches x to y occurrences of the preceding expression.
+{x} Matches exactly x occurrences of the preceding expression.
+{x,} Matches x or more occurrences of the preceding expression.
+{,x} Matches no more than x occurrences of the preceding expression.
+egrep = grep -E //looking for regex in a file
+e.g =>
+egrep d*g <fileName> //g, dog, dg, ddg, dddg, ...
+egrep d+g <fileName> //dg, ddg, dddg, ...
+egrep "\*" <fileName>
+egrep ^man <fileName>
+egrep m.n <fileName>
+egrep man$ <fileName>
+egrep "[[:digit:]]{1,}" <fileName>
+egrep "[[:digit:]]{3}-[[:digit:]]{3}-[[:digit:]]{3}" <fileName>
