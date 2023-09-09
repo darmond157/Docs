@@ -52,3 +52,7 @@ cat 1.txt 2.txt 3.txt 4.txt 2> /dev/null || we can think of /dev/null to be garb
 read variable < example.txt // will redirect standard input to come from a file
 read variable // will put users input in variable ehich can be used with "echo $variable"
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+diff <file1> <file2> //returns differences between two files.
+du -b <fileName> //disk usage of that file. each word is one byte. so it returns how many bytes or words it has.
+du -h <fileName> //in human-readable format
+wc option <fileName> //fileName can be -l -w -c  => line/word/character
