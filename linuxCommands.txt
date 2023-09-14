@@ -114,4 +114,10 @@ egrep "[[:digit:]]{3}-[[:digit:]]{3}-[[:digit:]]{3}" <fileName>
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 updatedb
 locate <fileName>
-find <directory> (-name <fileName>) (-type <fileType: d,f,...>) (-iname <fileName> :case insensitive) (-size 6c :du -h command)
+find <dir> (-name/-iname <fileName>) (-type <fileType: d,f,...>) (-size 6c :du -h command) (-exec ls -l/rm {} + :{} + references all the files that are found in the find results)
+e.g =>
+find / -size +100M //size more than 100 megabytes.
+find / -size -5c //size less than 5 bytes.
+find / -size +50M -size -100M //find all the files that are bigger than 50 MB, but smaller than 100 MB.
+find / -size +1G //Will search for all the files that are bigger than 1 GB.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
