@@ -111,3 +111,7 @@ egrep m.n <fileName>
 egrep man$ <fileName>
 egrep "[[:digit:]]{1,}" <fileName>
 egrep "[[:digit:]]{3}-[[:digit:]]{3}-[[:digit:]]{3}" <fileName>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+updatedb
+locate <fileName>
+find <directory> (-name <fileName>) (-type <fileType: d,f,...>) (-iname <fileName> :case insensitive) (-size 6c :du -h command)
