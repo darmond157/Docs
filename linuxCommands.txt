@@ -55,7 +55,7 @@ read variable // will put users input in variable ehich can be used with "echo $
 diff <file1> <file2> //returns differences between two files.
 du -b <fileName> //disk usage of that file. each word is one byte. so it returns how many bytes or words it has.
 du -h <fileName> //in human-readable format
-wc option <fileName> //fileName can be -l -w -c  => line/word/character
+wc option <fileName> //word count: option can be -l -w -c  => line/word/character
 file <something> //returns filetype of that => dir, ascii file, ...
 sort -r(reverse) <fileName>
 uniq <fileName> //shows lines without repeat.
@@ -120,4 +120,24 @@ find / -size +100M //size more than 100 megabytes.
 find / -size -5c //size less than 5 bytes.
 find / -size +50M -size -100M //find all the files that are bigger than 50 MB, but smaller than 100 MB.
 find / -size +1G //Will search for all the files that are bigger than 1 GB.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+apt-get download <packageName> //package.deb will store in /tmp (cd as root)
+dpkg -c <package.deb> //list the files inside that .deb package.
+dpkg -i <package.deb> //installs the downloaded package.
+apt-get remove <packageName> //removes (uninstalls) a package, but it doesn’t remove the package configuration files.
+apt-get purge <packageName> //remove the package along with its configuration files.
+apt-cache (-n) search <keyword> //searches for a package in repo. (-n for exact search of that word).
+apt-get install <packageName>
+apt-cache show <packageName> //show package information.
+apt-cache depends <packageName> //show package dependencies.
+dpkg -l //list all the packages that are installed on system.
+apt-cache pkgnames //lists all packages that are available to install.
+apt-cache pkgnames | wc -l //count all packages
+** repositories(sources) system used to obtain all apt-cache packages are listed in /etc/apt/source.list **
+apt-cache policy //shows all enabled repositories on system.
+apt-cache policy <packageName> //shows which repository provides a specific package.
+apt-get install --only-upgrade <packageName> //upgrades a package.
+** order matters; that is, you need to run the apt-get update command before you run the apt-get upgrade command. this action is called patching the system.**
+apt-get update //updates the list of available packages and their versions.
+apt-get upgrade //upgrades all the installed packages on system.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
