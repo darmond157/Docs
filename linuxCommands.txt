@@ -141,3 +141,13 @@ apt-get install --only-upgrade <packageName> //upgrades a package.
 apt-get update //updates the list of available packages and their versions.
 apt-get upgrade //upgrades all the installed packages on system.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ps -u <username> //lists all the processes that are owned by a specific user.
+ps -e //lists all the processes that are running on your system.
+ps -ef //get some more informations. 3rd column is PPID which is parent process identifiers.
+** A parent process is a process that has started one or more child processes. A perfect example is terminal and bash shell; when terminal opens, bash shell is started as well. **
+pgrep <processName> //shows the PID of a process.
+ps -fp <processId> //shows the information of your bash process.
+top //view processes' information in real time.
+** There are 2 types of processes. 1)Foreground processes. 2)Background processes. **
+yes <string> //outputs any string that follows it repeatedly until killed.
+** firefox can be opened with <firefox> command but it will occupy the terminal. we can use <firefox &> to run as background process. **
