@@ -22,3 +22,5 @@ git stash drop <stash_id>
 git stash show (-p) <stash_id>
 git stash apply <stash_id> (return to first place)
 git stash pop <stash_id> (return to first place and delete from stash list)
+git rev-list --count --all (returns commits count in all branches)
+git rev-list --count main (returns commits count in specific branch)
