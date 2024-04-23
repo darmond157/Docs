@@ -12,7 +12,7 @@ ls -i soft_or_hard_link_file original_file //checks inode
 sudo -i //access root
 su (optional:- <user>) (default:root)
 cat /etc/passwd => username:x:userId:groupId:a comment:home path:default shell //x means the user's password is encrypted and stored in the file /etc/shadow.
-(as root) useradd -m -u <uid> -c <comment> -s <shell_path> <username>
+useradd -m -u <uid> -c <comment> -s <shell_path> <username> (ass root)
 tail -n <number> <filename> //gives last <number> lines of file
 passwd <user> //change password
 usermod -u <userid> -s <shell> username
@@ -151,3 +151,38 @@ top //view processes' information in real time.
 ** There are 2 types of processes. 1)Foreground processes. 2)Background processes. **
 yes <string> //outputs any string that follows it repeatedly until killed.
 ** firefox can be opened with <firefox> command but it will occupy the terminal. we can use <firefox &> to run as background process. **
+kill -l //lists all available signals. signals are used to communicate with processes.
+kill -SIGKILL/-9 <PID>
+pkill <signal> <processName>
+ps -o nice -p <PID> //shows a process priority for CPU. varies from -20 to 19 (highest to lowest with 0 which is default priority.)
+nice -n <niceness> <apt-get upgrade> //set priority for a new process.
+renice -n <niceness> -p <PID> //changes a process priority.
+** Every process in Linux is represented by a directory in /proc. for example /proc/6849 which can be found  with <pgrep <processName>>. in /proc directory 
+there is .exe, status, limits,...  file. .exe file is a soft_link to the processes' executable file. status file also, stores various pieces of information about that process.
+the limits file displays the current limits set for the process. there is also a fd directory which shows all the files that the process is currently using on the system. **
+lsof -p <PID> //lists all the files a process is using.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+visudo === /etc/sudoers //for managing users and their access
+** when we edit visudo, system will search for syntax errors and ruines other sudo commands. but editing /etc/sudoers directly will not search for syntax errors which is
+dangerous and cause other problems without knowing. so always use visudo :) **
+<username> <hosts>=(<user>:<group>) <NOPASSWD:(optional)> <commands> //e.g: smurf ALL=(ALL) /usr/sbin/useradd
+User_Alias <aliasName> = <username1>,<username2>,... //defining name aliases.
+Cmnd_Alias <aliasName> = <command1>, <command2>, ... , /usr/sbin/useradd, /usr/sbin/userdel, /usr/sbin/usermod //defining command alias.
+%<groupName> <hosts>=(<user>:<group>) <commands> //e.g => %developers ALL=(ALL) NOPASSWD: /usr/bin/apt-get install
+sudo -lU <username> //lists the sudo commands that a user can run.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ping <hostName> //trying to reach the host over internet.
+ping -c <3> google.com //number of packets sent to host.
+ls /sys/class/net //lists network interfaces.
+ip link show //lists available network interfaces.
+e.g =>
+1. eth0: The Ethernet interface
+2. lo: The loopback interface
+3. wlan0: The Wi-Fi interface
+nmcli device status //shows the connection status of each network interface in the output.
+ifconfig wlan0 //check ip address.
+ifconfig -a //list all network interfaces.
+ip address show //lists and shows the status of all network interfaces.
+route -n / netstat -rn / ip route //all these 3 commands, checks the IP address of system's default gateway.
+traceroute <destination> //trace the route to any destination.
+cat /etc/resolv.conf //the IP address of system's DNS server is stored in this file.
